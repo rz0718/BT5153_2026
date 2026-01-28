@@ -1,0 +1,19 @@
+# LangChain Core Dependencies
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+langchain-ollama>=0.1.0
+langchain-huggingface>=0.1.0
+
+# HTTP Requests (for direct API calls)
+requests>=2.31.0
+
+# HuggingFace Dependencies
+transformers>=4.40.0
+torch>=2.0.0
+
+# Jupyter Notebook Support
+jupyter>=1.0.0
+ipykernel>=6.29.0
+
+# Additional utilities
+python-dotenv>=1.0.0

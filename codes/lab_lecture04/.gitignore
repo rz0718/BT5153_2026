@@ -1,0 +1,42 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Environment variables and config files with secrets
+.env
+.env.local
+.env.*
+!.env.example
+# Note: config.py is committed (it's a utility, no secrets)
+# Only .env files with actual API keys are gitignored
+config_local.py
+*_secrets.py
+*_local.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model cache (HuggingFace)
+.cache/
+models/
