@@ -27,7 +27,7 @@ from langchain_core.messages import HumanMessage, ToolMessage
 @tool
 def get_current_weather(location: str, unit: str = "celsius") -> str:
     """Get current weather in a location."""
-    mock = {"London": 15, "Tokyo": 22, "Paris": 18}
+    mock = {"London": 15, "Tokyo": 22, "Paris": 18, "Singapore": 28}
     temp = mock.get(location.split(",")[0].strip(), 20)
     if unit == "fahrenheit":
         temp = temp * 9 / 5 + 32
@@ -93,6 +93,8 @@ def run_demo(question: str, max_rounds: int = 5) -> None:
 
 
 if __name__ == "__main__":
-    run_demo("What's the weather like in London?")
+    run_demo("What's the weather like in Singapore?")
+    print("--------------------------------")
+    #run_demo("What is 4 * 7 / 3?")
     print()
-    run_demo("What is 4 * 7 / 3?")
+    run_demo("Hello, how are you?")
