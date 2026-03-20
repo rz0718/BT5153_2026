@@ -21,12 +21,12 @@ from typing import Dict
 from langchain.tools import tool
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, ToolMessage
-
+from langchain_openai import OpenAI
 
 # STEP 1: Define the tools (LangChain @tool decorator + typed args/docstrings)
 @tool
 def get_current_weather(location: str, unit: str = "celsius") -> str:
-    """Get current weather in a location."""
+    """Get current weather  in a location."""
     mock = {"London": 15, "Tokyo": 22, "Paris": 18, "Singapore": 28}
     temp = mock.get(location.split(",")[0].strip(), 20)
     if unit == "fahrenheit":
@@ -60,8 +60,9 @@ def run_tool(name: str, args: dict) -> str:
 
 def run_demo(question: str, max_rounds: int = 5) -> None:
     # Local Ollama model (ensure `ollama serve` is running and model is pulled).
-    model = ChatOllama(model="qwen2.5:3b", temperature=0)
-
+    #model = ChatOllama(model="qwen2.5:3b", temperature=0)
+    # OpenAI model 
+    model = OpenAI(model='gpt-4o-min')
     # STEP 2: Pass tools + user query to the LLM
     model_with_tools = model.bind_tools(TOOLS)
     messages = [HumanMessage(content=question)]
@@ -69,7 +70,7 @@ def run_demo(question: str, max_rounds: int = 5) -> None:
     for _ in range(max_rounds):
         response = model_with_tools.invoke(messages)
         print("Model:", response.content)
-
+        print(response)
         # STEP 3: If no tool calls, we have a final answer
         if not response.tool_calls:
             print("Answer:", response.content or "(no content)")
@@ -93,8 +94,10 @@ def run_demo(question: str, max_rounds: int = 5) -> None:
 
 
 if __name__ == "__main__":
-    run_demo("What's the weather like in Singapore?")
+    #run_demo("What's the weather like in Singapore?")
     print("--------------------------------")
     #run_demo("What is 4 * 7 / 3?")
     print()
-    run_demo("Hello, how are you?")
+    #run_demo("Hello, how are you?")
+    print()
+    run_demo("Check the weather in Singapore and London and get the sum of their tempeature.")

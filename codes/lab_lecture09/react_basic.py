@@ -27,7 +27,7 @@ class ChatBot:
     
     def execute(self):
         client = get_openai_client()
-        completion = client.chat.completions.create(model=model_used, messages=self.messages)
+        completion = client.chat.completions.create(model=model_used, messages=self.messages, temperature=0)
         # Uncomment this to print out token usage each time, e.g.
         # {"completion_tokens": 86, "prompt_tokens": 26, "total_tokens": 112}
         # print(completion.usage)
@@ -63,7 +63,6 @@ Observation: Individual Assignments are 50% total: Assignment 1 (10%), Assignmen
 You then output:
 
 Answer: The individual assignments in BT5153 are worth 50% total, broken down as: Assignment 1 (10%), Assignment 2 (10%), Assignment 3 (10%), and Kaggle Competition (20%).
-
 """.strip()
 
 
@@ -133,7 +132,7 @@ if __name__ == "__main__":
     print('==================Test 3====================')
     query("What are the assignment weights in BT5153?")
     print('==================Test 4====================')
-    query("If attendance is worth 10/10 points, what's the minimum I need on individual assignments to pass BT5153 with 50% overall?")
+    query("If I get 60% on attendence, get 50% on projects and all points on assignment, what's my final score?")
 
 
 
